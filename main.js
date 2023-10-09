@@ -85,6 +85,53 @@ const init = () => {
   }
   createNewPanel();
   createNewPanel();
+
+  const idList = [`left`, `right`, `up`, `down`];
+  for (const id of idList) {
+    document.getElementById(id).onpointerdown = (e) => {
+      e.preventDefault();
+      move(id);
+    };
+  }
+  document.ondblclick = (e) => {
+    e.preventDefault();
+  };
+};
+
+const move = (direction) => {
+  for (let index = 0; index < 4; index++) {
+    const bin = [];
+    for (let pos = 0; pos < 4; pos++) {
+      if (direction === "left" || direction === "right") {
+        bin.push(board[index][pos]);
+      } else {
+        bin.push(board[pos][index]);
+      }
+    }
+    if (direction === `right` || direction === "down") {
+      bin.reverse();
+    }
+
+    const result = bin.filter((v) => !!v);
+    result.length = 4;
+
+    if (direction === `right` || direction === "down") {
+      result.reverse();
+    }
+    for (let pos = 0; pos < 4; pos++) {
+      if (direction === "left" || direction === "right") {
+        board[index][pos] = result[pos];
+        if (result[pos]) {
+          result[pos].setPosition(pos, index);
+        }
+      } else {
+        board[pos][index] = result[pos];
+        if (result[pos]) {
+          result[pos].setPosition(index, pos);
+        }
+      }
+    }
+  }
 };
 
 const createNewPanel = () => {
