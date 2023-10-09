@@ -61,6 +61,10 @@ class Panel {
     this.div.style.top = `${size * y}px`;
     return true;
   }
+
+  setPrevPanels(panelList) {
+    this.prevPanelList = panelList;
+  }
 }
 
 const board = [];
@@ -112,7 +116,18 @@ const move = (direction) => {
       bin.reverse();
     }
 
-    const result = bin.filter((v) => !!v);
+    let result = bin.filter((v) => !!v);
+    for (let pos = 0; pos < 4; pos++) {
+      const current = result[pos];
+      const next = result[pos + 1];
+      if (current && next && current.value === next.value) {
+        const panel = new Panel(-1, -1, current.value + next.value);
+        panel.setPrevPanels([current, next]);
+        result[pos] = panel;
+        result[pos + 1] = null;
+      }
+    }
+    result = result.filter((v) => !!v);
     result.length = 4;
 
     if (direction === `right` || direction === "down") {
