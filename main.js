@@ -9,7 +9,39 @@ class Panel {
     div.style.position = "absolute";
     div.style.width = `${size}px`;
     div.style.height = `${size}px`;
-    div.style.backgroundColor = `#8f8`;
+    if (value === 2) {
+    div.style.backgroundColor = '#eee4da';
+    }
+    else if (value === 4) {
+        div.style.backgroundColor = '#ede0c8';
+    }
+    else if (value === 8) {
+        div.style.backgroundColor = '#f2b179';
+    }
+    else if (value === 16) {
+        div.style.backgroundColor = '#f59563';
+    }
+    else if (value === 32) {
+        div.style.backgroundColor = '#f67c5f';
+    }
+    else if (value === 64) {
+        div.style.backgroundColor = '#f65e3b';
+    }
+    else if (value === 128) {
+        div.style.backgroundColor = '#edcf72';
+    }
+    else if (value === 256) {
+        div.style.backgroundColor = '#edcc61';
+    }
+    else if (value === 512) {
+        div.style.backgroundColor = '#edc850';
+    }
+    else if (value === 1024) {
+        div.style.backgroundColor = '#edc53f';
+    }
+    else if (value === 2048) {
+        div.style.backgroundColor = '#edc22e';
+    }
     div.style.border = `${size / 7}px ridge #484`;
     div.style.boxSizing = `border-box`;
 
