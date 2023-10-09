@@ -63,11 +63,14 @@ class Panel {
   }
 }
 
+const board = [];
 const init = () => {
   const container = document.getElementById("container");
 
   for (let y = 0; y < 4; y++) {
+    board[y] = [];
     for (let x = 0; x < 4; x++) {
+      board[y][x] = null;
       const div = document.createElement("div");
       container.appendChild(div);
       div.style.position = "absolute";
@@ -80,7 +83,26 @@ const init = () => {
       div.style.boxSizing = `border-box`;
     }
   }
-  new Panel(2, 2, 2048);
+  createNewPanel();
+  createNewPanel();
+};
+
+const createNewPanel = () => {
+  const availableList = [];
+  for (let y = 0; y < 4; y++) {
+    for (let x = 0; x < 4; x++) {
+      if (!board[y][x]) {
+        availableList.push([x, y]);
+      }
+    }
+  }
+
+  const [x, y] = availableList[
+    Math.trunc(Math.random() * availableList.length)
+  ];
+  board[y][x] = new Panel(x, y, 2);
+
+  return availableList.length === 1;
 };
 
 window.onload = () => {
