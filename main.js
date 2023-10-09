@@ -62,6 +62,11 @@ class Panel {
     return true;
   }
 
+  setGameover() {
+    this.div.style.backgroundColor = "#f88";
+    this.div.style.borderColor = "#844";
+  }
+
   setPrevPanels(panelList) {
     this.prevPanelList = panelList;
   }
@@ -149,7 +154,27 @@ const move = (direction) => {
     }
   }
   if (isMove) {
-    createNewPanel();
+    if (createNewPanel()) {
+      let gameover = true;
+      for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
+          const current = board[y][x];
+          const right = board[y][x + 1];
+          const down = board[y + 1] && board[y + 1][x];
+          if (right && current.value === right.value) {
+            gameover = false;
+          }
+          if (down && current.value === down.value) {
+            gameover = false;
+          }
+        }
+      }
+      if (gameover) {
+        for (const panel of board.flat()) {
+          panel.setGameover();
+        }
+      }
+    }
   }
 };
 
