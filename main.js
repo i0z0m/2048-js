@@ -103,6 +103,7 @@ const init = () => {
 };
 
 const move = (direction) => {
+  let isMove = false;
   for (let index = 0; index < 4; index++) {
     const bin = [];
     for (let pos = 0; pos < 4; pos++) {
@@ -137,15 +138,18 @@ const move = (direction) => {
       if (direction === "left" || direction === "right") {
         board[index][pos] = result[pos];
         if (result[pos]) {
-          result[pos].setPosition(pos, index);
+          isMove = result[pos].setPosition(pos, index) || isMove;
         }
       } else {
         board[pos][index] = result[pos];
         if (result[pos]) {
-          result[pos].setPosition(index, pos);
+          isMove = result[pos].setPosition(index, pos) || isMove;
         }
       }
     }
+  }
+  if (isMove) {
+    createNewPanel();
   }
 };
 
