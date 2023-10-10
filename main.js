@@ -42,7 +42,7 @@ class Panel {
     else if (value === 2048) {
         div.style.backgroundColor = '#edc22e';
     }
-    div.style.border = `${size / 7}px ridge #484`;
+    div.style.border = `${size / 7}px ridge #cdc1b4`;
     div.style.boxSizing = `border-box`;
 
     div.style.display = "flex";
@@ -119,8 +119,8 @@ const init = () => {
       div.style.top = `${size * y}px`;
       div.style.width = `${size}px`;
       div.style.height = `${size}px`;
-      div.style.backgroundColor = `#fa8`;
-      div.style.border = `${size / 30}px ridge #864`;
+      div.style.backgroundColor = `#cdc1b4`;
+      div.style.border = `${size / 30}px ridge #bbada0`;
       div.style.boxSizing = `border-box`;
     }
   }
