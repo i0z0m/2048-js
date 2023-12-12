@@ -127,13 +127,6 @@ const init = () => {
   createNewPanel();
   createNewPanel();
 
-  const idList = [`left`, `right`, `up`, `down`];
-  for (const id of idList) {
-    document.getElementById(id).onpointerdown = (e) => {
-      e.preventDefault();
-      move(id);
-    };
-  }
   document.onkeydown = (e) => {
     e.preventDefault();
     switch (e.key) {
