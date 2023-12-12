@@ -174,6 +174,10 @@ const init = () => {
     }
   });
 };
+// Disable Pull-to-Refresh
+document.addEventListener("touchmove", function (event) {
+  event.preventDefault();
+}, { passive: false });
 
 const move = (direction) => {
   let isMove = false;
