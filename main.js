@@ -146,9 +146,33 @@ const init = () => {
         break;
     }
   };
-  document.ondblclick = (e) => {
-    e.preventDefault();
-  };
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+  document.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    // Determine the swipe direction
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0) {
+        move("right");
+      } else {
+        move("left");
+      }
+    } else {
+      if (deltaY > 0) {
+        move("down");
+      } else {
+          move("up");
+      }
+    }
+  });
 };
 
 const move = (direction) => {
