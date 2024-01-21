@@ -9,11 +9,14 @@ class Panel {
     div.style.position = "absolute";
     div.style.width = `${size}px`;
     div.style.height = `${size}px`;
+    div.style.color = 'white';
     if (value === 2) {
     div.style.backgroundColor = '#eee4da';
+    div.style.color = 'black';
     }
     else if (value === 4) {
         div.style.backgroundColor = '#ede0c8';
+        div.style.color = 'black';
     }
     else if (value === 8) {
         div.style.backgroundColor = '#f2b179';
